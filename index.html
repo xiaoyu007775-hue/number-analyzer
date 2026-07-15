@@ -181,15 +181,16 @@ for(let n=1;n<=49;n++){
 list.sort((a,b)=>b.times-a.times);
 
 
+// 取概率最高的数量
+let top=list.slice(0,need);
 
+
+// 按数字大小重新排序
 top.sort((a,b)=>a.num-b.num);
 
 
-
 let html="<h3>推荐数字</h3>";
 
-
-let html="<h3>推荐数字</h3>";
 
 let result = top.map(x => String(x.num).padStart(2,"0")).join(",");
 
