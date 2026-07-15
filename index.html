@@ -126,22 +126,22 @@ let total=0;
 
 rows.forEach(row=>{
 
-    let arr=row.split(",");
+    let arr=row.split(/[,\s，]+/);
 
     let used={};
 
 
     arr.forEach(n=>{
 
-        n=n.trim();
+    n=parseInt(n.trim(),10);
 
-        if(n!="" && n>=1 && n<=49){
+    if(!isNaN(n) && n>=1 && n<=49){
 
-            used[n]=true;
+        used[n]=true;
 
-        }
+    }
 
-    });
+});
 
 
     Object.keys(used).forEach(n=>{
@@ -182,18 +182,28 @@ list.sort((a,b)=>b.times-a.times);
 
 
 
-let top=list.slice(0,need);
+top.sort((a,b)=>a.num-b.num);
 
 
 
 let html="<h3>推荐数字</h3>";
 
 
-top.forEach(x=>{
+let html="<h3>推荐数字</h3>";
 
-html+=`<span class="number">${x.num}</span>`;
+let result = top.map(x => String(x.num).padStart(2,"0")).join(",");
 
-});
+html += `
+<div style="
+background:#e8f5e9;
+padding:12px;
+border-radius:8px;
+font-size:20px;
+font-weight:bold;
+word-break:break-all;">
+${result}
+</div>
+`;
 
 
 html+="<hr><h3>详细概率</h3>";
